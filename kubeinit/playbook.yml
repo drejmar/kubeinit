@@ -163,6 +163,20 @@
             tasks_from: create_network.yml
             public: true
 
+#
+#
+- name: drejmar
+  hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Skip play if playbook_terminated
+      ansible.builtin.meta: end_play
+      when: hostvars['kubeinit-facts'].playbook_terminated | default(false)
+      tags: omit_from_grapher
+#
+#
+
     - name: Create services the cluster will need
       tags: task_create_services
       block:

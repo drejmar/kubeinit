@@ -90,7 +90,7 @@
 
 - name: Remove bootstrap node from haproxy config
   ansible.builtin.command: |
-    podman --remote --connection {{ hostvars[kubeinit_haproxy_service_node].target }} exec {{ kubeinit_haproxy_service_name }} sed -i '/bootstrap/s/^/#/' /usr/local/etc/haproxy/haproxy.cfg
+    podman --connection {{ hostvars[kubeinit_haproxy_service_node].target }} exec {{ kubeinit_haproxy_service_name }} sed -i '/bootstrap/s/^/#/' /usr/local/etc/haproxy/haproxy.cfg
   register: _result
   changed_when: "_result.rc == 0"
   delegate_to: localhost

@@ -22,6 +22,6 @@ kubeinit_prepare_debug: "{{ (ansible_verbosity | int) >= 2 | bool }}"
 kubeinit_prepare_hide_sensitive_logs: true
 
 kubeinit_prepare_podman_dependencies:
-  - podman
+  - podman=3.4.4+ds1-1ubuntu1
   - buildah
   - skopeo

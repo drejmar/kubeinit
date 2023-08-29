@@ -69,10 +69,10 @@
 - name: Copy kubeinit registry secrets into registry container
   ansible.builtin.shell: |
     set -eo pipefail
-    podman --remote --connection {{ hostvars[kubeinit_registry_service_node].target }} cp {{ kubeinit_registry_service_name }}:{{ kubeinit_registry_directory_auth }} - | \
-      podman --remote --connection {{ hostvars[kubeinit_registry_service_node].target }} cp - "{{ kubeinit_registry_service_name }}:/"
-    podman --remote --connection {{ hostvars[kubeinit_registry_service_node].target }} cp {{ kubeinit_registry_service_name }}:{{ kubeinit_registry_directory_cert }} - | \
-      podman --remote --connection {{ hostvars[kubeinit_registry_service_node].target }} cp - "{{ kubeinit_registry_service_name }}:/"
+    podman --connection {{ hostvars[kubeinit_registry_service_node].target }} cp {{ kubeinit_registry_service_name }}:{{ kubeinit_registry_directory_auth }} - | \
+    podman --connection {{ hostvars[kubeinit_registry_service_node].target }} cp - "{{ kubeinit_registry_service_name }}:/"
+    podman --connection {{ hostvars[kubeinit_registry_service_node].target }} cp {{ kubeinit_registry_service_name }}:{{ kubeinit_registry_directory_cert }} - | \
+    podman --connection {{ hostvars[kubeinit_registry_service_node].target }} cp - "{{ kubeinit_registry_service_name }}:/"
   args:
     executable: /bin/bash
   register: _result

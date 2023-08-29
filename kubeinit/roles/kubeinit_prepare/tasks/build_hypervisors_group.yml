@@ -257,7 +257,7 @@
 - name: Set kubeinit_cluster_ssh_config fact
   ansible.builtin.set_fact:
     kubeinit_cluster_ssh_config: "{{ hostvars['kubeinit-facts'].local_home + '/.ssh/' + kubeinit_cluster_name + '_config' }}"
-    kubeinit_cluster_keypair_path: "{{ hostvars['kubeinit-facts'].local_home + '/.ssh/kubeinit_id_' + hostvars['kubeinit-facts'].ssh_keytype }}"
+    kubeinit_cluster_keypair_path: "{{ hostvars['kubeinit-facts'].local_home + '/.ssh/' + kubeinit_cluster_name +'_id_' + hostvars['kubeinit-facts'].ssh_keytype }}"
 
 - name: Add ansible_ssh_extra_args to kubeinit_hypervisors group
   ansible.builtin.add_host:

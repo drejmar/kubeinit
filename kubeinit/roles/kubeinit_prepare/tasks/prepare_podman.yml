@@ -68,18 +68,18 @@
           become: true
           become_user: root
 
-        - name: Add the Podman kubeinit package repository to Apt
-          ansible.builtin.shell: |
-            set -eo pipefail
-            echo "deb https://download.opensuse.org/repositories/home:/kubeinit/{{ _path_element }}/ /" > /etc/apt/sources.list.d/kubeinit.list
-            curl -L "https://download.opensuse.org/repositories/home:/kubeinit/{{ _path_element }}/Release.key" | apt-key add -
-            apt-get update
-          args:
-            executable: /bin/bash
-          become: true
-          become_user: root
-          register: _result
-          changed_when: "_result.rc == 0"
+#        - name: Add the Podman kubeinit package repository to Apt
+#          ansible.builtin.shell: |
+#            set -eo pipefail
+#            echo "deb https://download.opensuse.org/repositories/home:/kubeinit/{{ _path_element }}/ /" > /etc/apt/sources.list.d/kubeinit.list
+#            curl -L "https://download.opensuse.org/repositories/home:/kubeinit/{{ _path_element }}/Release.key" | apt-key add -
+#            apt-get update
+#          args:
+#            executable: /bin/bash
+#          become: true
+#          become_user: root
+#          register: _result
+#          changed_when: "_result.rc == 0"
 
       when: _param_hostvars.distribution_family == 'Debian'
 

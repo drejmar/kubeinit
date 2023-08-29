@@ -42,7 +42,7 @@
 - name: Get list of existing remote system connection definitions
   ansible.builtin.shell: |
     set -eo pipefail
-    podman --remote system connection list | sed -e 1d -e 's/[* ].*//'
+    podman system connection list | sed -e 1d -e 's/[* ].*//'
   args:
     executable: /bin/bash
   register: _result_connections
@@ -50,7 +50,7 @@
 
 # - name: Remove any existing remote system connection definition for bastion hypervisor
 #   ansible.builtin.command: |
-#     podman --remote system connection remove {{ item }}
+#     podman system connection remove {{ item }}
 #   loop: "{{ _result_connections.stdout_lines | list }}"
 #   register: _result
 #   changed_when: "_result.rc == 0"

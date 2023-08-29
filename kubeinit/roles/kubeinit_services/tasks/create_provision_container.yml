@@ -161,7 +161,7 @@
     hostname: "{{ kubeinit_provision_service_name }}"
     ansible_connection: containers.podman.podman
     ansible_python_interpreter: /usr/bin/python3
-    ansible_podman_extra_args: --remote --connection "{{ hostvars[kubeinit_deployment_node_name].target }}"
+    ansible_podman_extra_args: --connection "{{ hostvars[kubeinit_deployment_node_name].target }}"
 
 - name: Disable pipelining while using podman connector
   block:
